@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chart</title>
+    <link rel="stylesheet" href="chart.css">
+    <script src="chart.js"></script>
+</head>
+<body>
+
+
+<div id="container">
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+<script>
+
+    // type 종류 [ line,bar,doughnut ]
+
+    const randomData = {
+        dayNumber(){
+            return  Math.round(Math.random() * 50);
+        },
+        weekNumber(){
+            return  Math.round(Math.random() * 100);
+        },
+        monthNumber(){
+            return  Math.round(Math.random() * 200);
+        },
+    };
+
+
+
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow'],
+            datasets: [{
+                label: '일',
+                data: [randomData.dayNumber(), randomData.dayNumber(), randomData.dayNumber(),randomData.dayNumber(),randomData.dayNumber()],
+                backgroundColor: 'rgba(0,255,0,0.3)',
+                borderColor:'dodgerblue',
+                borderDash:[3,3],
+                borderDashOffset:1,
+                // showLine:false, //베지에곡선 그리기
+            }, {
+                label: '주',
+                data: [randomData.weekNumber(), randomData.weekNumber(), randomData.weekNumber(),randomData.weekNumber(),randomData.weekNumber()],
+                backgroundColor: 'rgba(255,0,0,0.3)',
+            },{
+                label: '월',
+                data: [randomData.monthNumber(), randomData.monthNumber(), randomData.monthNumber(),randomData.monthNumber(),randomData.monthNumber()],
+                backgroundColor: 'rgba(255,0,0,0.3)',
+            }],
+        },
+        options: {
+            elements: {
+
+            },
+            animation: {
+                onProgress: function (animation) {
+
+                },
+            },
+            layout: {
+                padding: {
+                    left: 50,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            },
+
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)',
+                    fontSize:13
+                }
+            },
+            title:{
+                display: true,
+                text:'트래픽 현황',
+                position:'bottom',
+            }
+
+
+        }
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
